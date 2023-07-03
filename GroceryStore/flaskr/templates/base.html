@@ -6,6 +6,18 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+    <div class="navbar">
+        <a href="{{url_for('auth.signin')}}">
+            SIGN IN
+        </a>
+
+        <a href="{{url_for('auth.signup')}}">
+            SIGN UP
+        </a>
+    </div>
+
+    <hr>
+
     <h1>
         Hello, World!!
     </h1>
