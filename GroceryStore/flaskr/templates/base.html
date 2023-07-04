@@ -3,29 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {# CDN Link for using Bootstrap-CSS #}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    
+    {# Using external CSS for the layout of the website along with Bootstrap #}
+    {# Our custom/external CSS should always  #}
+
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <div class="navbar">
-        <a href="{{url_for('auth.signin')}}">
-            SIGN IN
-        </a>
+    {# Navigation bar appears on every page of the website #}
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+            {# Branding of the website goes first #}
+            <a href="#" class="navbar-brand">
+                <img src="{{ url_for('static', filename='images/Brand-image.svg') }}" height="40" width="40">
+                GroceryStore
+            </a>
 
-        <a href="{{url_for('auth.signup')}}">
-            SIGN UP
-        </a>
-    </div>
+            {# Button to toggle the navbar-collapse contents when they are hidden #}
+            <button type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" class="navbar-toggler">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <hr>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Categories</a>
+                    </li>
+                </ul>
+                <!-- Left links -->
+                
+                {# Full-text search functionality for the products on the website #}
+                <div class="d-flex form-outline w-50">
+                    <form action="#" method="#" class="d-flex">
+                        <input class="form-control w-100 me-2" type="text" placeholder="Groceries">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+                
+                {# Authentication options for the users #}
+                {% block user_auth %}
+                {% endblock %}
+            </div>
+        </div>
+    </nav>
 
-    <h1>
-        Hello, World!!
-    </h1>
 
-    <hr>
-
-    <h2>
-        {% block content %} {% endblock %}
-    </h2>
+    {# CDN for Bootstrap-JavaScript and popper #}
+    {# JavaScript should be added at the end of the html to make sure website loading is faster #}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>    
 </body>
 </html>
+
