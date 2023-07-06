@@ -1,15 +1,53 @@
-from flask import render_template, request, redirect, url_for
+from flask import (
+    render_template,
+    request, 
+    redirect, 
+    url_for,
+    flash
+)
+
+from werkzeug.security import check_password_hash
 
 from flaskr.auth import bp
 from flaskr.forms import SigninForm
-
+from flaskr.models import User
 
 @bp.route("/signin", methods=["GET", "POST"])
 def signin():
-    # handling a Sign in from user... to be changed using sessions and database authentication
-    if request.method == 'POST':
-        username = request.form.get('username')
-        return redirect(url_for('user.user_page', username=username))
-
     form = SigninForm()
-    return render_template("auth/signin.html", form=form)
+    
+    if request.method == 'GET':
+        return render_template("auth/signin.html", form=form)
+    elif request.method == 'POST':
+        if form.validate_on_submit():
+            # if user submits the form with all validators, we need to authenticate the user
+            user_data = request.form
+
+            username = user_data['username']
+
+            # we need to get the stored hash in the database to validate the password
+            db_data = User.query.filter_by(user_name=username).first()
+
+            if db_data is None:
+                # given user does not exist
+                flash(f"A user with the given username DOES NOT EXIST!! Try again.", "ERROR")
+                return render_template("auth/signin.html", form=form)
+            else:
+                # a user with the given username EXISTS in the database
+
+                # boolean value is true if the user has entered correct password else false
+                correct_password = check_password_hash(db_data.password_hash, user_data['password'])
+
+                if correct_password:
+                    return redirect(url_for('user.user_page', username=username))
+                else:
+                    flash(f"INCORRECT PASSWORD!! Try again.", "ERROR")
+                    return redirect(url_for('auth.signin'))
+                    
+        else:
+            flash(f'Login Failed!! Try Again.', "ERROR")
+            return redirect(url_for('auth.signin', form=form))
+    
+
+
+

@@ -7,10 +7,88 @@
 {% endblock %}
 
 {% block user_auth %}
+<div class="d-flex align-items-center">
+    <a href="{{ url_for('auth.signin') }}" type="button" class="btn btn-dark px-3 me-2 text-decoration-none">
+        Sign in
+    </a>
+</div>
 {% endblock %}
 
 {% block content %}
-    
+    <h1 class="p-3">
+        Sign Up
+    </h1>
+
+    <hr>
+
+    <form action="{{ url_for('auth.signup') }}" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+            {# Name row #}
+            <div class="row py-2 align-items-center justify-content-center">
+                <div class="col-4">
+                    {{ form.name(size=50, placeholder='Full Name') }}
+                </div>
+            </div>
+
+            {# Username row #}
+            <div class="row py-2 align-items-center justify-content-center">
+                <div class="col-4">
+                    {{ form.username(size=50, placeholder='Username') }}
+                </div>
+            </div>
+
+            {# Email row #}
+            <div class="row py-2 align-items-center justify-content-center">
+                <div class="col-4">
+                    {{ form.email(size=50, placeholder='Email') }}
+                </div>
+            </div>
+
+            {# Password row #}
+            <div class="row py-2 align-items-center justify-content-center">
+                <div class="col-4">
+                    {{ form.password_hash(size=50, placeholder='Password') }}
+                </div>
+            </div>
+
+            {# Flashing the error message if Login fails #}
+            
+            {# flashing ERROR messages #}
+            {% with messages = get_flashed_messages(category_filter=["ERROR"]) %}
+                {% if messages %}
+                    <ul class="container">
+                        {% for message in messages %}
+                            <div class="alert alert-danger align-center" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            
+            {# flashing SUCCESS messages #}
+            {% with messages = get_flashed_messages(category_filter=["SUCCESS"]) %}
+                {% if messages %}
+                    <ul class="container">
+                        {% for message in messages %}
+                            <div class="alert alert-success align-center" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+
+            {# Submit row #}
+            <div class="row py-2 align-items-center justify-content-center">
+                <div class="col">
+                    {{ form.submit() }}
+                </div>
+            </div>
+        </div>
+    </form>
 {% endblock %}
 
 

@@ -9,8 +9,6 @@ class User(db.Model):
         - Used in other tables to associate a User with various 
         other information
     """
-
-
     # since flask-migrate uses a snake case to store all table names
     # we should specify a name if we want that to be overridden
     __tablename__ = "User"

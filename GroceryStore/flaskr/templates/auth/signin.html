@@ -7,6 +7,11 @@
 {% endblock %}
 
 {% block user_auth %}
+<div class="d-flex align-items-center">
+    <a href="{{ url_for('auth.signup') }}" type="button" class="btn btn-success me-3 text-decoration-none">
+        Sign up
+    </a>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -18,27 +23,49 @@
 
     <form action="{{url_for('auth.signin')}}" method="post" novalidate>
         {{ form.hidden_tag() }}
-        
+
         <div class="form-group">
             {# Username row #}
             <div class="row py-2 align-items-center justify-content-center">
-                <div class="col-2">
-                    {{ form.username.label }}
-                </div>
                 <div class="col-4">
-                    {{ form.username(size=50) }}
+                    {{ form.username(size=50, placeholder='Username') }}
                 </div>
             </div>
 
             {# Password row #}
             <div class="row py-2 align-items-center justify-content-center">
-                <div class="col-2">
-                    {{ form.password.label }}
-                </div>
                 <div class="col-4">
-                    {{ form.password(size=50) }}
+                    {{ form.password(size=50, placeholder='Password') }}
                 </div>
             </div>
+
+            {# Flashing the error message if Login fails #}
+            
+            {# flashing ERROR messages #}
+            {% with messages = get_flashed_messages(category_filter=["ERROR"]) %}
+                {% if messages %}
+                    <ul class="container">
+                        {% for message in messages %}
+                            <div class="alert alert-danger align-center" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            
+            {# flashing SUCCESS messages #}
+            {% with messages = get_flashed_messages(category_filter=["SUCCESS"]) %}
+                {% if messages %}
+                    <ul class="container">
+                        {% for message in messages %}
+                            <div class="alert alert-success align-center" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
 
             {# Submit row #}
             <div class="row py-2 align-items-center justify-content-center">
