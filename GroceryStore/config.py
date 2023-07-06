@@ -19,7 +19,12 @@ class Config:
     # for different purposes like generating signatures or tokens
 
     # Flask-WTF : uses it to protect web forms against CSRF attacks (Cross-Site-Request-Forgery)
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'this-is-a-random-key'
+    # Sessions : use this secret key to cryptographically-sign cookies sent to clients
+
+    # To generate a good random secret key string run the following two commands in a python interpreter:-
+    # $ import secrets
+    # $ secrets.token_urlsafe(16)
+    SECRET_KEY = os.environ.get('SECRET_KEY') or '1EZKpnQcRzHdR9wHLy7GYw'
 
 class Development(Config):
     """

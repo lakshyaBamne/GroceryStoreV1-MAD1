@@ -8,12 +8,16 @@
 {% block user_auth %}
 
 <div class="d-flex align-items-center">
-    <a href="#" type="button" class="btn btn-dark px-3 me-2 text-decoration-none">
+    <a href="{{ url_for('auth.signin') }}" type="button" class="btn btn-dark px-3 me-2 text-decoration-none">
         Sign in
     </a>
-    <a href="#" type="button" class="btn btn-success me-3 text-decoration-none">
+    <a href="{{ url_for('auth.signup') }}" type="button" class="btn btn-success me-3 text-decoration-none">
         Sign up
     </a>
 </div>
 
+{% endblock %}
+
+{% block content %}
+    
 {% endblock %}

@@ -10,6 +10,7 @@ from .extensions import *
 # Blueprint Imports
 from flaskr.main import bp as app_bp
 from flaskr.auth import bp as auth_bp
+from flaskr.user import bp as user_bp
 
 def create_app():
     # application instance is created inside the Application Factory
@@ -25,5 +26,6 @@ def create_app():
     # Blueprint registrations
     app.register_blueprint(app_bp)
     app.register_blueprint(auth_bp)
+    app.register_blueprint(user_bp)
 
     return app

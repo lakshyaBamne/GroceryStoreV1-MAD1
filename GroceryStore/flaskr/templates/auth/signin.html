@@ -1,1 +1,52 @@
+{# SIGN IN PAGE #}
+
 {% extends 'base.html' %}
+
+{% block title %}
+    SIGN IN
+{% endblock %}
+
+{% block user_auth %}
+{% endblock %}
+
+{% block content %}
+    <h1 class="py-3">
+        Sign In
+    </h1>
+
+    <hr>
+
+    <form action="{{url_for('auth.signin')}}" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+            {# Username row #}
+            <div class="row py-2 align-items-center justify-content-center">
+                <div class="col-2">
+                    {{ form.username.label }}
+                </div>
+                <div class="col-4">
+                    {{ form.username(size=50) }}
+                </div>
+            </div>
+
+            {# Password row #}
+            <div class="row py-2 align-items-center justify-content-center">
+                <div class="col-2">
+                    {{ form.password.label }}
+                </div>
+                <div class="col-4">
+                    {{ form.password(size=50) }}
+                </div>
+            </div>
+
+            {# Submit row #}
+            <div class="row py-2 align-items-center justify-content-center">
+                <div class="col">
+                    {{ form.submit() }}
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
