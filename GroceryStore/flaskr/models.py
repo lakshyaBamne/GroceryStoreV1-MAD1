@@ -19,6 +19,7 @@ class User(db.Model):
     full_name = db.Column(db.String(100))
     user_name = db.Column(db.String(50), unique=True)
     email = db.Column(db.String(100))
+    contact = db.Column(db.String(15))
     password_hash = db.Column(db.String(500))
 
     def __repr__(self):

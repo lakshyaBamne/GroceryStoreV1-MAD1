@@ -27,9 +27,10 @@ def signup():
             full_name = new_user_data['name']
             user_name = new_user_data['username']
             email = str(new_user_data['email'])
+            contact = new_user_data['contact']
             password_hash = generate_password_hash(new_user_data['password_hash'])
 
-            u = User(full_name=full_name, user_name=user_name, email=email, password_hash=password_hash)
+            u = User(full_name=full_name, user_name=user_name, email=email,contact=contact, password_hash=password_hash)
 
             # now we can try and add the new used to the database
             try:
