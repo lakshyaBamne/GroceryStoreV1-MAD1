@@ -28,21 +28,11 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- Left links -->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Categories</a>
-                    </li>
-                </ul>
-                <!-- Left links -->
+                {# Options that appear on the left next to branding #}
+                {% block navbar_options %}
+                {% endblock %}
                 
-                {# Full-text search functionality for the products on the website #}
-                <div class="d-flex form-outline w-50">
-                    <form action="#" method="#" class="d-flex">
-                        <input class="form-control w-100 me-2" type="text" placeholder="Groceries">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
+                
                 
                 {# Authentication options for the users #}
                 {% block user_auth %}
@@ -57,6 +47,13 @@
         {% block content %}
         {% endblock %}
     </div>
+
+    {# Footer for the main application which is always visible #}
+    <footer class="bg-dark fixed-bottom">
+        {% block footer_admin %}
+            
+        {% endblock %}
+    </footer>
 
     {# CDN for Bootstrap-JavaScript and popper #}
     {# JavaScript should be added at the end of the html to make sure website loading is faster #}

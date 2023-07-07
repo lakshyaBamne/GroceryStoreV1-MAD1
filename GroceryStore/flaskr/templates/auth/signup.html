@@ -14,9 +14,27 @@
 </div>
 {% endblock %}
 
+{% block navbar_options %}
+    <!-- Left links -->
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Categories</a>
+        </li>
+    </ul>
+    <!-- Left links -->
+    
+    {# Full-text search functionality for the products on the website #}
+    <div class="d-flex form-outline w-50">
+        <form action="#" method="#" class="d-flex">
+            <input class="form-control w-100 me-2" type="text" placeholder="Groceries">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+{% endblock %}
+
 {% block content %}
     <h1 class="p-3">
-        Sign Up
+        User Sign Up
     </h1>
 
     <hr>
@@ -99,3 +117,10 @@
 {% endblock %}
 
 
+{% block footer_admin %}
+<div class="text-end p-3">
+    <a href="{{url_for('admin.admin_signin')}}" class="text-decoration-none btn btn-outline-success">
+        Admin
+    </a>
+</div>
+{% endblock %}

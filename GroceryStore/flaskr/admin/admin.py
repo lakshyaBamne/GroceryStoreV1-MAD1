@@ -8,12 +8,12 @@ from flask import (
 
 from flaskr.admin import bp
 
-@bp.route("/admin", methods=["GET", "POST"])
-def admin():
+@bp.route("/admin/<username>", methods=["GET", "POST"])
+def admin(username):
     """
         Admin page handler
     """
     if request.method == "GET":
-        return render_template("admin/admin_index.html")
+        return render_template("admin/admin_index.html", username=username)
     elif request.method == "POST":
         pass
