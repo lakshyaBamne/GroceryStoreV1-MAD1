@@ -21,3 +21,10 @@ class SigninForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Sign In')
 
+class AdminSigninForm(FlaskForm):
+    """
+        Sign in form for the ADMIN
+    """
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Sign In')

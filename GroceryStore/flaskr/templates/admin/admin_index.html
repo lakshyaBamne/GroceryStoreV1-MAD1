@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}ADMIN{% endblock %}
+
+{% block user_auth %}
+<div class="d-flex align-items-center">
+    <a href="{{ url_for('app.index') }}" type="button" class="btn btn-danger me-3 text-decoration-none">
+        Sign Out
+    </a>
+</div>
+{% endblock %}
+
+{% block content %}
+    <h1>
+        Welcome Admin
+    </h1>    
+{% endblock %}
+

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}ADMIN SIGN IN{% endblock %}
+
+{% block user_auth %}
+<div class="d-flex align-items-center">
+    <a href="{{ url_for('app.index') }}" type="button" class="btn btn-danger me-3 text-decoration-none">
+        Sign Out
+    </a>
+</div>
+{% endblock %}
+
+{% block content %}
+    <h1 class="py-3">
+        Admin Sign In
+    </h1>
+
+    <hr>
+
+    <form action="{{url_for('admin.admin_signin')}}" method="post" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            {# Username row #}
+            <div class="row py-2 align-items-center justify-content-center">
+                <div class="col-4">
+                    {{ form.username(size=50, placeholder='Username') }}
+                </div>
+            </div>
+
+            {# Password row #}
+            <div class="row py-2 align-items-center justify-content-center">
+                <div class="col-4">
+                    {{ form.password(size=50, placeholder='Password') }}
+                </div>
+            </div>
+
+            {# Flashing the error message if Login fails #}
+            
+            {# flashing ERROR messages #}
+            {% with messages = get_flashed_messages(category_filter=["ERROR"]) %}
+                {% if messages %}
+                    <ul class="container">
+                        {% for message in messages %}
+                            <div class="alert alert-danger align-center" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            
+            {# flashing SUCCESS messages #}
+            {% with messages = get_flashed_messages(category_filter=["SUCCESS"]) %}
+                {% if messages %}
+                    <ul class="container">
+                        {% for message in messages %}
+                            <div class="alert alert-success align-center" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+
+            {# Submit row #}
+            <div class="row py-2 align-items-center justify-content-center">
+                <div class="col">
+                    {{ form.submit() }}
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
