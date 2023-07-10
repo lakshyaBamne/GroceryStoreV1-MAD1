@@ -22,6 +22,11 @@ def create_app():
 
     # initializing the extension objects for this application instance
     db.init_app(app)
+
+    # create the database models after configuring the database object
+    with app.app_context():
+        db.create_all()
+
     migrate.init_app(app, db)
 
     # Blueprint registrations

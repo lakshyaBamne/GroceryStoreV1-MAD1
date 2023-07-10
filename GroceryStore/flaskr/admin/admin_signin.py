@@ -1,6 +1,7 @@
 from flask import (
-    render_template,
     request,
+    session,
+    render_template,
     url_for,
     flash,
     redirect
@@ -42,6 +43,16 @@ def admin_signin():
                 correct_password = check_password_hash(db_data.password_hash, user_data['password'])
 
                 if correct_password:
+                    # if user authentication is successfull, we store the user information
+                    # in a session for futher use
+
+                    # storing the username in a flask-session for later use
+                    session['Username'] = username
+
+                    # log message
+                    print(f"__LOG__ Added a new session (with client side cookies) for Admin : {username}")
+                    print(f"__LOG__ [SIGN IN] {username} ")
+
                     return redirect(url_for('admin.admin', username=username))
                 else:
                     flash(f"INCORRECT PASSWORD!! Try again.", "ERROR")

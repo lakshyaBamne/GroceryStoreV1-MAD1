@@ -1,7 +1,9 @@
 # Database models for the application
 from .extensions import db
 
-import datetime
+from datetime import datetime,timezone
+
+# to get current time in UTC Time zone -> datetime.now(timezone.utc)
 
 # adm = Admin(full_name="Lakshya Bamne", user_name="Admin_lakshyaBamne", email="lakshyabamne181@gmail.com", contact="7024837727",password_hash="pbkdf2:sha256:600000$fhPpUD5qCyMdNuW8$6e7016d6b4a697721287e6fc0206588d6b8349f568b847a28a736921583e0074")
 # Admin login details :-
@@ -49,7 +51,7 @@ class User(db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)
     contact = db.Column(db.String(15), unique=True, nullable=False)
     password_hash = db.Column(db.String(500))
-    date_joined = db.Column(db.DateTime, default=datetime.utcnow) # time when user signed up!
+    date_joined = db.Column(db.DateTime, default=datetime.now(timezone.utc)) # time when user signed up!
 
     def __repr__(self):
         """
@@ -63,7 +65,7 @@ class City(db.Model):
     """
     __tablename__ = "City"
     
-    id = db.Column(db.Integer, primary_key=False)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
 
     def __repr__(self):
@@ -108,8 +110,9 @@ class PrimaryAddress(db.Model):
     """
     __tablename__ = "PrimaryAddress"
     
+    id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("User.id"), nullable=False)
-    address_id = db.Column(db.integer, db.ForeignKey("Address.id"), nullable=False)
+    address_id = db.Column(db.Integer, db.ForeignKey("Address.id"), nullable=False)
 
     def __repr__(self):
         """
@@ -170,7 +173,7 @@ class Product(db.Model):
     unit = db.Column(db.Integer, db.ForeignKey("MeasurementUnit.id"), nullable=False)
     price_per_quantity = db.Column(db.Integer, nullable=False)
     seller = db.Column(db.Integer, db.ForeignKey("Seller.id"), nullable=False)
-    date_added = db.Column(db.DateTime, default=datetime.utcnow) # when was product added to store
+    date_added = db.Column(db.DateTime, default=datetime.now(timezone.utc)) # when was product added to store
     expiration_date = db.Column(db.DateTime, nullable=False)
     # create a one to many relationship to the rating table for every product
     rating = db.Column(db.Integer)
@@ -208,7 +211,7 @@ class Rating(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("User.id"), nullable=False)
     # individual ratings are shown on frontend by using query on this field
     stars = db.Column(db.Integer, nullable=False)
-    date_added = db.Column(db.DateTime, default=datetime.utcnow) # used to show latest reviews
+    date_added = db.Column(db.DateTime, default=datetime.now(timezone.utc)) # used to show latest reviews
     description = db.Column(db.String(500))
 
     def __repr__(self):
