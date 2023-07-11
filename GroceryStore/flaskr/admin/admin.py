@@ -17,7 +17,7 @@ def admin(username):
     if request.method == "GET":
         if 'Username' in session:
             if session['Username'] == username:
-                return render_template('user/userpage.html', username=username)
+                return render_template('admin/admin_index.html', username=username)
             else:
                 print(f"__LOG__ [POSSIBLE BREACH] someone tried to access account of {username}")
                 return "<h1>Nice try hacker!! your tricks not working on this website</h1>"
@@ -25,5 +25,3 @@ def admin(username):
             # replace this string with an error handler later
             print(f"__LOG__ [POSSIBLE BREACH] someone tried to access account of {username}")
             return "<h1>Nice try hacker!! your tricks not working on this website</h1>"
-    elif request.method == "POST":
-        pass

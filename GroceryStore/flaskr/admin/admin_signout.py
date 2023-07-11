@@ -3,13 +3,13 @@ from flask import (
     request,
     url_for,
     redirect,
-    render_templater,
+    render_template,
     flash
 )
 
 from flaskr.admin import bp
 
-@bp.route('', methods=["GET", "POST"])
+@bp.route('/admin_signout', methods=["GET", "POST"])
 def admin_signout():
     """
         View function to log out a user
