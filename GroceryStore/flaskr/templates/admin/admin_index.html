@@ -16,7 +16,9 @@
         Options
     </a>
 
+    {# Dropdown menu Items on Admin Navigation bar #}
     <ul class="dropdown-menu">
+        {# Adding products and categories #}
         <li>
             <a class="dropdown-item" href="#">Add Category</a>
         </li>
@@ -29,8 +31,16 @@
             <a class="dropdown-item" href="#">Add Seller</a>
         </li>
 
+        {# Adding other things to the database before adding products #}
+
         <li>
-            <a class="dropdown-item" href="#">Add a Unit of Measurement</a>
+            <a class="dropdown-item" href="#">Add Unit</a>
+        </li>
+
+        {# Adding locations where the store currently operates #}
+
+        <li>
+            <a class="dropdown-item" href="#">Add Location</a>
         </li>
     </ul>
 </li>
@@ -44,11 +54,247 @@
 </form>
 {% endblock %}
 
-
 {% block nav_auth_options %}
 <div class="d-flex align-items-center px-3">
     <a href="{{ url_for('admin.admin_signout') }}" type="button" class="btn btn-outline-danger me-3 text-decoration-none">
         Sign Out
     </a>
 </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="row text-center justify-content-center p-3 bg-success" >
+    
+    {# Add Category Modal Card #}
+    <div class="col-sm-2 mb-3 mb-sm-0">
+        <div class="card border border-success">
+            <div class="card-body">
+                <h5 class="card-header">Category</h5>
+                <p class="card-text">Add a new Category</p>
+                <a 
+                href="#" 
+                class="btn btn-outline-success"
+                
+                type="button"
+
+                data-bs-toggle="modal"
+                data-bs-target="#categoryModal"
+                >
+                    Add Category
+                </a>
+
+                <div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Add a new Category</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            
+
+
+
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-outline-success">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Add Product Modal Card #}
+    <div class="col-sm-2">
+        <div class="card border border-success">
+            <div class="card-body">
+                <h5 class="card-header">Product</h5>
+                <p class="card-text">Add a new Product</p>
+                <a 
+                href="#" 
+                class="btn btn-outline-success"
+
+                type="button"
+
+                data-bs-toggle="modal"
+                data-bs-target="#productModal"
+
+                >
+                    Add Product
+                </a>
+
+                <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Add a new Product</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            
+
+
+
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-outline-success">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Add Location Modal Card #}
+    <div class="col-sm-2">
+        <div class="card border border-success">
+            <div class="card-body">
+                <h5 class="card-header">Location</h5>
+                <p class="card-text">Add a new Location</p>
+                <a 
+                href="#" 
+                class="btn btn-outline-success"
+                
+                type="button"
+
+                data-bs-toggle="modal"
+                data-bs-target="#locationModal"
+                >
+                    Add Location
+                </a>
+
+                <div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Store Location</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                
+
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-outline-success">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Add Unit Modal Card #}
+    <div class="col-sm-2">
+        <div class="card border border-success">
+            <div class="card-body">
+                <h5 class="card-header">Unit</h5>
+                <p class="card-text">Add a new Unit</p>
+                <a 
+                href="#" 
+                class="btn btn-outline-success"
+                
+                type="button"
+
+                data-bs-toggle="modal"
+                data-bs-target="#unitModal"
+                >
+                    Add Unit
+                </a>
+
+                <div class="modal fade" id="unitModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Add a New Unit of Measurement for Products</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            
+
+
+
+
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-outline-success">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Add Seller Modal Card #}
+    <div class="col-sm-2">
+        <div class="card border border-success">
+            <div class="card-body">
+                <h5 class="card-header">Seller</h5>
+                <p class="card-text">Add a new Seller</p>
+                <a 
+                href="#" 
+                class="btn btn-outline-success"
+                
+                type="button"
+
+                data-bs-toggle="modal"
+                data-bs-target="#sellerModal"
+                >
+                    Add Seller
+                </a>
+
+                <div class="modal fade" id="sellerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Add a new Seller</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            
+
+
+
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-outline-success">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+
+{% block footer_admin %}
+
 {% endblock %}
