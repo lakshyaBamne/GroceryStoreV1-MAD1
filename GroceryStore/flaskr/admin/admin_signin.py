@@ -10,7 +10,7 @@ from flask import (
 from werkzeug.security import check_password_hash
 
 from flaskr.admin import bp
-from flaskr.forms import AdminSigninForm
+from flaskr.forms.auth_forms import AdminSigninForm
 from flaskr.models import Admin
 
 @bp.route('/admin-signin', methods=["GET", "POST"])

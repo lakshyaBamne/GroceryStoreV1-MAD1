@@ -10,7 +10,7 @@ from werkzeug.security import generate_password_hash
 
 from flaskr.auth import bp
 from flaskr.extensions import db
-from flaskr.forms import SignupForm
+from flaskr.forms.auth_forms import SignupForm
 from flaskr.models import User
 
 @bp.route("/signup", methods=["GET", "POST"])

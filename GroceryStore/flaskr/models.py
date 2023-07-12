@@ -104,6 +104,19 @@ class Country(db.Model):
         """
         return f'<Country : {self.id} -> {self.name}>'
 
+class Location(db.Model):
+    """
+        Locations where the Store currently operates
+
+        -> combination of City, State, Country
+    """
+    __tablename__ = "Location"
+
+    id = db.Column(db.Integer, primary_key=True)
+    city_id = db.Column(db.Integer, db.ForeignKey("City.id"), nullable=False)
+    state_id = db.Column(db.Integer, db.ForeignKey("State.id"), nullable=False)
+    country_id = db.Column(db.Integer, db.ForeignKey("Country.id"), nullable=False)
+
 class PrimaryAddress(db.Model):
     """
         Intermediate table to connect Address table to Users
@@ -134,9 +147,7 @@ class Address(db.Model):
     line_1 = db.Column(db.String(200), nullable=False)
     line_2 = db.Column(db.String(200))
     pincode = db.Column(db.String(6), nullable=False)
-    city_id = db.Column(db.Integer, db.ForeignKey("City.id"), nullable=False)
-    state_id = db.Column(db.Integer, db.ForeignKey("State.id"), nullable=False)
-    country_id = db.Column(db.Integer, db.ForeignKey("Country.id"), nullable=False)
+    location_id = db.Column(db.Integer, db.ForeignKey("Location.id"), nullable=False)
 
     def __repr__(self):
         """

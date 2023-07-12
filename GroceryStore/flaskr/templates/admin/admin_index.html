@@ -64,6 +64,30 @@
 
 {% block content %}
 
+{# flashing SUCCESS messages #}
+{% with messages = get_flashed_messages(category_filter=["SUCCESS"]) %}
+    {% if messages %}
+        <div class="alert alert-success alert-dismissible fade show text-center m-1" role="alert">
+            {% for message in messages %}
+                <p>{{ message }}</br></p>
+            {% endfor %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endif %}
+{% endwith %}
+
+{# flashing ERROR messages #}
+{% with messages = get_flashed_messages(category_filter=["ERROR"]) %}
+    {% if messages %}
+        <div class="alert alert-danger alert-dismissible fade show text-center m-1" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endif %}
+{% endwith %}
+
 <div class="row text-center justify-content-center p-3 bg-success" >
     
     {# Add Category Modal Card #}
@@ -184,14 +208,49 @@
                             </div>
                             <div class="modal-body">
                                 
+                                {# Admin Data Form to add a new location #}
 
+                                <form action="{{url_for('admin.admin_forms_location')}}" method="post" novalidate>
+                                    {{ form["location"].hidden_tag() }}                                 
 
+                                    <div class="form-group">
+                                        {# City row #}
+                                        <div class="row py-2 align-items-center justify-content-center">
+                                            <div class="col-4">
+                                                {{ form["location"].city(placeholder='City') }}
+                                            </div>
+                                        </div>
+                            
+                                        {# State Select field #}
+                                        <div class="row py-2 align-items-center justify-content-center">
+                                            <div class="col-4">
+                                                {{ form["location"].state(placeholder='State') }}
+                                            </div>
+                                        </div>
 
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-outline-success">Submit</button>
+                                        {# Country Select field #}
+                                        <div class="row py-2 align-items-center justify-content-center">
+                                            <div class="col-4">
+                                                {{ form["location"].country(placeholder='Country') }}
+                                            </div>
+                                        </div>
+                            
+                                        {# Admin Password field #}
+                                        <div class="row py-2 align-items-center justify-content-center">
+                                            <div class="col-4">
+                                                {{ form["location"].password(placeholder='Admin Password') }}
+                                            </div>
+                                        </div>
+                            
+                                        {# Submit row #}
+                                        <div class="row py-2 text-center">
+                                            <div class="col">
+                                                {{ form["location"].submit() }}                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                      
+                                </form>
                             </div>
                         </div>
                     </div>
