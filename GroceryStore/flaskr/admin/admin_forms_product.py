@@ -17,9 +17,3 @@ def admin_form_product():
     """
         Admin dashboard handler for Form-Adding a new product
     """
-
-@bp.route("/admin/forms/seller", methods=["GET", "POST"])
-def admin_form_seller():
-    """
-        Admin dashboard handler for Form-Adding a new Seller
-    """

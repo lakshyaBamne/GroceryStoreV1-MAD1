@@ -9,7 +9,10 @@ from flask import (
 
 from flaskr.admin import bp
 
-from flaskr.forms.admin_data_forms import LocationForm
+from flaskr.forms.admin_data_forms import (
+    LocationForm,
+    SellerForm
+)
 
 @bp.route("/admin/<username>", methods=["GET", "POST"])
 def admin(username):
@@ -20,9 +23,11 @@ def admin(username):
     # we need to render all the forms that appear in the modals here
     # and pass it to the templates
     location_form = LocationForm()
+    seller_form = SellerForm()
 
     form ={
-        "location" : location_form
+        "location" : location_form,
+        "seller" : seller_form
     }
 
     if request.method == "GET":

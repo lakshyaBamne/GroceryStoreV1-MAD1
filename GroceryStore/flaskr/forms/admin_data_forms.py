@@ -19,9 +19,7 @@ class LocationForm(FlaskForm):
     """
         Admin Data Form to add a new location where the web store operates
 
-        -> The state and country fields here generate data dynamically
-        -> but the Admin can create a new state and country if he so desires
-        -> thus validation for these fields should not be checked
+        -> Updation and Deletion facility will be provided in the Accordion in the main content
 
         -> Also to make changes to the database, system asks for the Admin password
         in the form itself
@@ -32,4 +30,14 @@ class LocationForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
+class SellerForm(FlaskForm):
+    """
+        Admin Data Form to add a new Seller/Brand to the web store
 
+        -> Admin Password is required in the form itself to make changes to the databse
+    """
+    name = StringField('Seller Name', validators=[DataRequired()])
+    contact = StringField('Contact', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Submit')
