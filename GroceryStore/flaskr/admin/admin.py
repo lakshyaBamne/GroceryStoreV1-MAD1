@@ -11,7 +11,8 @@ from flaskr.admin import bp
 
 from flaskr.forms.admin_data_forms import (
     LocationForm,
-    SellerForm
+    SellerForm,
+    Unit
 )
 
 @bp.route("/admin/<username>", methods=["GET", "POST"])
@@ -24,10 +25,12 @@ def admin(username):
     # and pass it to the templates
     location_form = LocationForm()
     seller_form = SellerForm()
+    unit_form = Unit()
 
     form ={
         "location" : location_form,
-        "seller" : seller_form
+        "seller" : seller_form,
+        "unit" : unit_form
     }
 
     if request.method == "GET":

@@ -298,17 +298,42 @@
                             </div>
                             <div class="modal-body">
                             
+                                {# Form to add a new Seller for the store #}
+                                <form action="{{url_for('admin.admin_form_unit')}}" method="post" novalidate>
+                                    {{ form["unit"].hidden_tag() }}                                 
 
+                                    <div class="form-group">
+                                        {# Measurement unit name row #}
+                                        <div class="row py-2 align-items-center justify-content-center">
+                                            <div class="col-4">
+                                                {{ form["unit"].name(placeholder='Unit Name') }}
+                                            </div>
+                                        </div>
+                            
+                                        {# Measurement unit shorthand field #}
+                                        <div class="row py-2 align-items-center justify-content-center">
+                                            <div class="col-4">
+                                                {{ form["unit"].shorthand(placeholder='Short Hand') }}
+                                            </div>
+                                        </div>
+                            
+                                        {# Admin Password field #}
+                                        <div class="row py-2 align-items-center justify-content-center">
+                                            <div class="col-4">
+                                                {{ form["unit"].password(placeholder='Admin Password') }}
+                                            </div>
+                                        </div>
+                            
+                                        {# Submit row #}
+                                        <div class="row py-2 text-center">
+                                            <div class="col">
+                                                {{ form["unit"].submit() }}                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                      
+                                </form>
 
-
-
-
-
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-outline-success">Submit</button>
                             </div>
                         </div>
                     </div>

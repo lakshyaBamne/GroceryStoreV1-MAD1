@@ -41,3 +41,14 @@ class SellerForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+class Unit(FlaskForm):
+    """
+        Admin Data Form to add a new Measurement Unit for products
+
+        -> Admin password is required in the form itself to make changes to the database
+    """
+    name = StringField('Unit Name', validators=[DataRequired()])
+    shorthand = StringField('Shorthand', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Submit')

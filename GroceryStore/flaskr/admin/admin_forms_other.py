@@ -11,12 +11,14 @@ from werkzeug.security import check_password_hash
 
 from flaskr.models import(
     Admin, 
-    Seller
+    Seller,
+    MeasurementUnit
 )
 from flaskr.admin import bp
 from flaskr.extensions import db
 from flaskr.forms.admin_data_forms import (
-    SellerForm
+    SellerForm,
+    Unit
 )
 
 @bp.route("/admin/forms/unit", methods=["GET", "POST"])
@@ -24,6 +26,48 @@ def admin_form_unit():
     """
         Admin dashboard handler for Form-Adding a unit of measurement
     """
+
+    if request.method == "POST":
+        print(f"__LOG__ Admin {session['Username']} submitted a POST request to /admin/forms/unit ...")
+
+        form = Unit(request.form) 
+
+        if form.validate():
+            form_data = request.form
+
+            unit_name = (lambda name: name.upper())(form_data['name'])
+            unit_shorthand = (lambda name: name.upper())(form_data['shorthand'])
+            password = form_data['password']
+
+            # check if the password is correct or not
+            password_is_correct = (lambda password: check_password_hash( Admin.query.filter_by(user_name=session['Username']).first().password_hash , password))(password)
+
+            if password_is_correct:
+                # proceed to check correctness of data and then add to database
+                unit_exists = (lambda u_name: True if MeasurementUnit.query.filter_by(name=u_name).first() else False)(unit_name)
+
+                if unit_exists:
+                    flash(f"__LOG__ Unit already exists! No changes were made to the Database!", "WARNING")
+                    return redirect(url_for("admin.admin", username=session['Username']))
+                else:
+                    # seller does not exist so we can add one
+                    new_unit = MeasurementUnit(name=unit_name, shorthand=unit_shorthand)
+
+                    db.session.add(new_unit)
+                    db.session.commit()
+
+                    flash(f"__LOG__ Successfully added a new Seller/Brand : {unit_name}({unit_shorthand})", "SUCCESS")
+                    return redirect(url_for("admin.admin", username=session['Username']))
+
+            else:
+                flash("__ERROR__ : Admin Password wrong!! try again", "ERROR")
+                return redirect(url_for("admin.admin", username=session['Username']))
+
+        else:
+            if form.errors:
+                for error in form.errors:
+                    flash(f"__ERROR__ : {error} : {form.errors[error][0]} | ", "ERROR")
+            return redirect(url_for("admin.admin", username=session['Username']))
 
 @bp.route("/admin/forms/seller", methods=["GET", "POST"])
 def admin_form_seller():
