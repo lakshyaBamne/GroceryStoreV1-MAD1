@@ -8,7 +8,8 @@ from wtforms import (
     SubmitField, 
     EmailField, 
     IntegerField,
-    SelectField
+    SelectField,
+    TextAreaField
 )
 
 from wtforms.validators import (
@@ -52,3 +53,18 @@ class Unit(FlaskForm):
     shorthand = StringField('Shorthand', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+class CategoryForm(FlaskForm):
+    """
+        Admin Data Form to add a new Category to the Database
+    """
+    name = StringField('Category Name', validators=[DataRequired()])
+    description = TextAreaField('Description')
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+class ProductForm(FlaskForm):
+    """
+        Admin Data Form to add a new Product to the Database
+    """
+

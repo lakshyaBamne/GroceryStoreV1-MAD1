@@ -12,7 +12,9 @@ from flaskr.admin import bp
 from flaskr.forms.admin_data_forms import (
     LocationForm,
     SellerForm,
-    Unit
+    Unit,
+    CategoryForm,
+    ProductForm
 )
 
 @bp.route("/admin/<username>", methods=["GET", "POST"])
@@ -22,15 +24,20 @@ def admin(username):
     """
 
     # we need to render all the forms that appear in the modals here
-    # and pass it to the templates
+    # and pass it to the templates using a dictionary object which 
+    # can then be used inside the jinja templates
     location_form = LocationForm()
     seller_form = SellerForm()
     unit_form = Unit()
+    category_form = CategoryForm()
+    product_form = ProductForm()
 
     form ={
         "location" : location_form,
         "seller" : seller_form,
-        "unit" : unit_form
+        "unit" : unit_form,
+        "category" : category_form,
+        "product" : product_form
     }
 
     if request.method == "GET":

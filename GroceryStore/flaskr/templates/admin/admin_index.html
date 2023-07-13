@@ -129,16 +129,41 @@
                             </div>
                             <div class="modal-body">
                             
+                                {# Form to add a new Category of Products for the store #}
+                                <form action="{{url_for('admin.admin_form_category')}}" method="post" novalidate>
+                                    {{ form["category"].hidden_tag() }}                                 
 
-
-
-
-
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-outline-success">Submit</button>
+                                    <div class="form-group">
+                                        {# Category name row #}
+                                        <div class="row py-2 align-items-center justify-content-center">
+                                            <div class="col-4">
+                                                {{ form["category"].name(placeholder='Category name') }}
+                                            </div>
+                                        </div>
+                            
+                                        {# Category Description field #}
+                                        <div class="row py-2 align-items-center justify-content-center">
+                                            <div class="col-4">
+                                                {{ form["category"].description(placeholder='Description (Optional)') }}
+                                            </div>
+                                        </div>
+                            
+                                        {# Admin Password field #}
+                                        <div class="row py-2 align-items-center justify-content-center">
+                                            <div class="col-4">
+                                                {{ form["category"].password(placeholder='Admin Password') }}
+                                            </div>
+                                        </div>
+                            
+                                        {# Submit row #}
+                                        <div class="row py-2 text-center">
+                                            <div class="col">
+                                                {{ form["category"].submit() }}                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                      
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -411,12 +436,6 @@
                                     </div>
                                       
                                 </form>
-
-
-
-
-
-
                             </div>
                         </div>
                     </div>
