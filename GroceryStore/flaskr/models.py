@@ -180,6 +180,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(500))
+    category = db.Column(db.Integer, db.ForeignKey("Category.id"), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     unit = db.Column(db.Integer, db.ForeignKey("MeasurementUnit.id"), nullable=False)
     price_per_quantity = db.Column(db.Integer, nullable=False)

@@ -192,7 +192,7 @@
                 </a>
 
                 <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Add a new Product</h1>
@@ -200,16 +200,93 @@
                             </div>
                             <div class="modal-body">
                             
+                                {# Form to add a new Product to the store #}
+                                <form action="{{url_for('admin.admin_form_product')}}" method="post" novalidate>
+                                    {{ form["product"].hidden_tag() }}                                 
 
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                {# Product name row #}
+                                                <div class="row py-2 align-items-center justify-content-center">
+                                                    <div class="col-4">
+                                                        {{ form["product"].name(placeholder='Product name') }}
+                                                    </div>
+                                                </div>
+                                    
+                                                {# Product Description field #}
+                                                <div class="row py-2 align-items-center justify-content-center">
+                                                    <div class="col-4">
+                                                        {{ form["product"].description(placeholder='Description (Optional)') }}
+                                                    </div>
+                                                </div>
 
+                                                {# Product category field #}
+                                                <div class="row py-2 align-items-center justify-content-center">
+                                                    <div class="col-4">
+                                                        {{ form["product"].category(placeholder='Category') }}
+                                                    </div>
+                                                </div>
 
+                                                {# Product Quantity Available field #}
+                                                <div class="row py-2 align-items-center justify-content-center">
+                                                    <div class="col-4">
+                                                        {{ form["product"].quantity(placeholder='Quantity Available') }}
+                                                    </div>
+                                                </div>
 
+                                                {# Product seller field #}
+                                                <div class="row py-2 align-items-center justify-content-center">
+                                                    <div class="col-4">
+                                                        {{ form["product"].seller(placeholder='Seller Name') }}
+                                                    </div>
+                                                </div>
+                                            </div>
 
+                                            <div class="col-6">
 
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-outline-success">Submit</button>
+                                                {# Product Unit of Measurement field #}
+                                                <div class="row py-2 align-items-center justify-content-center">
+                                                    <div class="col-4">
+                                                        {{ form["product"].unit(placeholder='Unit of Measurement') }}
+                                                    </div>
+                                                </div>
+
+                                                {# Product Price per quantity field #}
+                                                <div class="row py-2 align-items-center justify-content-center">
+                                                    <div class="col-4">
+                                                        {{ form["product"].price_per_quantity(placeholder='Price for single item') }}
+                                                    </div>
+                                                </div>
+
+                                                {# Product Expiration Date field #}
+                                                <div class="row py-2 align-items-center justify-content-center">
+                                                    <div class="col-4">
+                                                        {{ form["product"].expiration_date.label }}
+                                                        {{ form["product"].expiration_date(placeholder='Product Expiry') }}
+                                                    </div>
+                                                </div>
+                                    
+                                                {# Admin Password field #}
+                                                <div class="row py-2 align-items-center justify-content-center">
+                                                    <div class="col-4">
+                                                        {{ form["category"].password(placeholder='Admin Password') }}
+                                                    </div>
+                                                </div>
+                                    
+                                                {# Submit row #}
+                                                <div class="row py-2 text-center">
+                                                    <div class="col">
+                                                        {{ form["category"].submit() }}                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                      
+                                </form>
+
                             </div>
                         </div>
                     </div>

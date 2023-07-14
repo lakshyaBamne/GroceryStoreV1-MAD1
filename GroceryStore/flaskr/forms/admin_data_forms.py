@@ -9,7 +9,9 @@ from wtforms import (
     EmailField, 
     IntegerField,
     SelectField,
-    TextAreaField
+    TextAreaField,
+    DateField,
+    DateTimeLocalField
 )
 
 from wtforms.validators import (
@@ -67,4 +69,15 @@ class ProductForm(FlaskForm):
     """
         Admin Data Form to add a new Product to the Database
     """
+    name = StringField('Product Name', validators=[DataRequired()])
+    description = TextAreaField('Description')
+    category = StringField('Category', validators=[DataRequired()])
+    quantity = IntegerField('Available Quantity', validators=[DataRequired()])
+    unit = StringField('Unit of Measurement', validators=[DataRequired()])
+    price_per_quantity = IntegerField('Price', validators=[DataRequired()])
+    seller = StringField('Seller', validators=[DataRequired()])
+    expiration_date = DateField('Expiration Date', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
 
