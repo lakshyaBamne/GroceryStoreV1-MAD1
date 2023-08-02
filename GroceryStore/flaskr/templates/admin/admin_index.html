@@ -558,74 +558,100 @@
 
 {# Accordion to show the different products on the website #}
 <div class="accordion accordion-flush m-3" id="accordionFlushExample">
+    
+    {# Accordion item for different categories #}
     <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingOne">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-        Categories
-        </button>
-    </h2>
-    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            Categories
+            </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                {# cards are rendered here in a grid #}
+
+                <div class="row">
+                    {% for item in data["category"] %}
+                        <div class="col-6 p-2">
+                            <div class="card p-2">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img src="..." class="card-img-top" alt="...">
+                                    </div>
+                                    <div class="col-8">
+                                        <h5 class="card-title">{{ item.name }}</h5>
+                                        <p class="card-text">{{ item.description }}</p>
+
+                                        {# button takes to the page for the category #}
+                                        <a href="#" class="btn btn-success">More</a>
+
+                                        {# button to delete the category and all the products in it #}
+                                        <a href="{{url_for('admin.action_delete_category', id=item.id)}}" class="btn btn-danger">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
+
             </div>
         </div>
     </div>
-    </div>
+    
+    {# Accordion item for different Products #}
     <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingTwo">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        Products
-        </button>
-    </h2>
-    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body">
-            
+        <h2 class="accordion-header" id="flush-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            Products
+            </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                
+            </div>
         </div>
-    </div>
-    </div>
-    <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingThree">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-        Store Locations
-        </button>
-    </h2>
-    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body">
-            
-        </div>
-    </div>
     </div>
 
+    {# Accordion item for different Store locations #}
     <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingThree">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-        Units for Products
-        </button>
-    </h2>
-    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body">
-            
+        <h2 class="accordion-header" id="flush-headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            Store Locations
+            </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                
+            </div>
         </div>
-    </div>
     </div>
 
+    {# Accordion item for different units of measurements #}
     <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingThree">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-        Sellers
-        </button>
-    </h2>
-    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body">
-            
+        <h2 class="accordion-header" id="flush-headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            Units for Products
+            </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                
+            </div>
         </div>
     </div>
+
+    {# Accordion item for different sellers #}
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            Sellers
+            </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                
+            </div>
+        </div>
     </div>
 </div>
 

@@ -8,5 +8,6 @@ from flaskr.admin import (
     admin_signout,
     admin_forms_product,
     admin_forms_location,
-    admin_forms_other
+    admin_forms_other,
+    admin_actions
 )
