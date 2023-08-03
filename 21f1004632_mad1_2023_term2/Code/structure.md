@@ -65,22 +65,4 @@
 
         ---
 
-        *MIGRATION DIRECTORY*
-
-        ---
-
-        - migrations/ --> Database migrations directory
-
-            - versions/
-                - version1.py
-                - version2.py
-                - ...
-            
-            - alembic.ini
-            - env.py
-            - README
-            - script.py.mako
-
-        ---
-
 ---
