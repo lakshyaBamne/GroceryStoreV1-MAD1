@@ -574,9 +574,31 @@
             Products
             </button>
         </h2>
-        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
-                
+                <div class="row">
+                    {% for item in data["product"] %}
+                        <div class="col-6 p-2">
+                            <div class="card p-2">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img src="..." class="card-img-top" alt="...">
+                                    </div>
+                                    <div class="col-8">
+                                        <h5 class="card-title">{{ item.name }}</h5>
+                                        <p class="card-text">{{ item.description }}</p>
+
+                                        {# button takes to the page for the category #}
+                                        <a href="#" class="btn btn-success">More</a>
+
+                                        {# button to delete the category and all the products in it #}
+                                        <a href="{{url_for('admin.action_delete_product', id=item.id)}}" class="btn btn-danger">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
@@ -588,9 +610,32 @@
             Store Locations
             </button>
         </h2>
-        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
-                
+                <div class="row">
+                    {% for item in data["location"] %}
+                        <div class="col-6 p-2">
+                            <div class="card p-2">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img src="..." class="card-img-top" alt="...">
+                                    </div>
+                                    <div class="col-8">
+                                        <h5 class="card-title">City - {{ item.city }}</h5>
+                                        <p class="card-text">State - {{ item.state }}</p>
+                                        <p class="card-text">Country - {{ item.country }}</p>
+
+                                        {# button takes to the page for the category #}
+                                        <a href="#" class="btn btn-success">More</a>
+
+                                        {# button to delete the category and all the products in it #}
+                                        <a href="{{url_for('admin.action_delete_location', id=item.id)}}" class="btn btn-danger">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
@@ -602,7 +647,7 @@
             Units for Products
             </button>
         </h2>
-        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+        <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
                 
             </div>
@@ -616,7 +661,7 @@
             Sellers
             </button>
         </h2>
-        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+        <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
                 
             </div>

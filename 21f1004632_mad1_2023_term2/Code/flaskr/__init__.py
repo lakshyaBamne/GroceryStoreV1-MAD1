@@ -18,6 +18,7 @@ def create_app():
     app = Flask(__name__)
 
     # Configurations for the web application
+    # we are configuring the application using Configuration classes
     app.config.from_object(Development)
 
     # initializing the extension objects for this application instance
