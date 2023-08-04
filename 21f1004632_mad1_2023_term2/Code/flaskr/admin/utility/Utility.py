@@ -11,7 +11,9 @@ from flaskr.models import (
     Location,
     City,
     State,
-    Country
+    Country,
+    MeasurementUnit,
+    Seller
 )
 
 def get_categories():
@@ -86,4 +88,48 @@ def get_locations():
 
     return result
 
+def get_units():
+    """
+        Function to get the units of measurements
+    """
+    result = []
+    all_units = MeasurementUnit.query.order_by(MeasurementUnit.id).all()
 
+    for i in range(len(all_units)):
+        unit_id = all_units[i].id
+        unit_name = all_units[i].name
+        unit_shorthand = all_units[i].shorthand
+
+        result_object = {
+            "id" : unit_id,
+            "name" : unit_name,
+            "shorthand" : unit_shorthand
+        }
+
+        result.append(result_object)
+
+    return result
+
+def get_sellers():
+    """
+        Function to get the sellers for the store
+    """
+    result = []
+    all_seller = Seller.query.order_by(Seller.id).all()
+
+    for i in range(len(all_seller)):
+        seller_id = all_seller[i].id
+        seller_name = all_seller[i].name
+        seller_contact = all_seller[i].seller_contact
+        seller_email = all_seller[i].seller_email
+
+        result_object = {
+            "id" : seller_id,
+            "name" : seller_name,
+            "contact" : seller_contact,
+            "email" : seller_email
+        }
+
+        result.append(result_object)
+
+    return result

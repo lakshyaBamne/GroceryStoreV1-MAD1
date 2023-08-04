@@ -24,7 +24,9 @@ from flaskr.models import Category
 from flaskr.admin.utility.Utility import (
     get_categories,
     get_products,
-    get_locations
+    get_locations,
+    get_units,
+    get_sellers
 )
 
 
@@ -42,6 +44,8 @@ def admin(username):
     data[f"category"] = get_categories()
     data[f"product"] = get_products()
     data[f"location"] = get_locations()
+    data[f"unit"] = get_units()
+    data[f"seller"] = get_sellers()
 
     # we need to render all the forms that appear in the modals here
     # and pass it to the templates using a dictionary object which 
