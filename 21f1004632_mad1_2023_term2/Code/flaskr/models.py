@@ -252,4 +252,34 @@ class Seller(db.Model):
         """
         return f'<Seller : {self.id} -> {self.name}>'
     
+class Cart(db.Model):
+    """
+        Models cart of various users
+    """
+    __tablename__ = "Cart"
 
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), db.ForeignKey("User.user_name"), nullable=False)
+    product = db.Column(db.Integer, db.ForeignKey("Product.id"), nullable=False)
+
+    def __repr__(self):
+        """
+            Models cart of users
+        """
+        return f'<Cart : {self.username} -> {self.product}>'
+    
+class SaveForLater(db.Model):
+    """
+        Models the save for later products for a user
+    """
+    __tablename__ = "SaveForLater"
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), db.ForeignKey("User.user_name"), nullable=False)
+    product = db.Column(db.Integer, db.ForeignKey("Product.id"), nullable=False)
+
+    def __repr__(self):
+        """
+            Models the save for later products for a user
+        """
+        return f'<SaveForLater : {self.username} -> {self.product}>'

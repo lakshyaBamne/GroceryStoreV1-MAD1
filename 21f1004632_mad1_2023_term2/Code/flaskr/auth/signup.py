@@ -13,12 +13,20 @@ from flaskr.extensions import db
 from flaskr.forms.auth_forms import SignupForm
 from flaskr.models import User
 
+from flaskr.utility.Utility import (
+    get_categories
+)
+
 @bp.route("/signup", methods=["GET", "POST"])
 def signup():
+    data = {}
+
+    data[f"category"] = get_categories()
+
     form = SignupForm()
 
     if request.method == 'GET':
-        return render_template("auth/signup.html", form=form)
+        return render_template("auth/signup.html", form=form, data=data)
     elif request.method == 'POST':
         if form.validate_on_submit():
             # user submits the correct data and hence can be registered
@@ -44,9 +52,9 @@ def signup():
             
             except:
                 flash(f"Error creating user!! Try again.", "ERROR")
-                return render_template("auth/signup.html", form=form)
+                return render_template("auth/signup.html", form=form, data=data)
 
 
         else:
             # user did not submit the correct data for all fields
-            return render_template("auth/signup.html", form=form)
+            return render_template("auth/signup.html", form=form, data=data)

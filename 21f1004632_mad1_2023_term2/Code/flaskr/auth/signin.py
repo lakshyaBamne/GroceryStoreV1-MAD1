@@ -13,12 +13,20 @@ from flaskr.auth import bp
 from flaskr.forms.auth_forms import SigninForm
 from flaskr.models import User
 
+from flaskr.utility.Utility import (
+    get_categories
+)
+
 @bp.route("/signin", methods=["GET", "POST"])
 def signin():
+    data = {}
+
+    data[f"category"] = get_categories()
+
     form = SigninForm()
     
     if request.method == 'GET':
-        return render_template("auth/signin.html", form=form)
+        return render_template("auth/signin.html", form=form, data=data)
     elif request.method == 'POST':
         if form.validate_on_submit():
             # if user submits the form with all validators, we need to authenticate the user
@@ -32,7 +40,7 @@ def signin():
             if db_data is None:
                 # given user does not exist
                 flash(f"A user with the given username DOES NOT EXIST!! Try again.", "ERROR")
-                return render_template("auth/signin.html", form=form)
+                return render_template("auth/signin.html", form=form, data=data)
             else:
                 # a user with the given username EXISTS in the database
 
@@ -50,14 +58,14 @@ def signin():
                     print(f"__LOG__ Added a new session (with client side cookies) for User : {username}")
                     print(f"__LOG__ [SIGN IN] {username} ")
 
-                    return redirect(url_for('user.user_page', username=username))
+                    return redirect(url_for('user.user_page', username=username, data=data))
                 else:
                     flash(f"INCORRECT PASSWORD!! Try again.", "ERROR")
-                    return redirect(url_for('auth.signin'))
+                    return redirect(url_for('auth.signin', data=data))
                     
         else:
             flash(f'Login Failed!! Try Again.', "ERROR")
-            return redirect(url_for('auth.signin', form=form))
+            return redirect(url_for('auth.signin', form=form, data=data))
     
 
 

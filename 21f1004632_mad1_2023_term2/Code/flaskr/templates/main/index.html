@@ -13,25 +13,6 @@
 
 {# should contain the navigation options on a page on the navigation bar #}
 {% block navbar_options %}
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Categories
-    </a>
-
-    <ul class="dropdown-menu">
-        <li>
-            <a class="dropdown-item" href="#">Categories</a>
-        </li>
-
-        <li>
-            <a class="dropdown-item" href="#">Active Locations</a>
-        </li>
-        
-        <li>
-            <a class="dropdown-item" href="#">Our Seller Brands</a>
-        </li>
-    </ul>
-</li>
 {% endblock %}
 
 {# search bar for the page can be hidden or shown #}
@@ -58,13 +39,40 @@
 
 {# MAIN content for the website #}
 {% block content %}
-
+    
 {% endblock %}
 
 {% block footer_admin %}
-<div class="text-end p-3">
-    <a href="{{url_for('admin.admin_signin')}}" class="text-decoration-none btn btn-outline-success">
-        Admin
-    </a>
+<div class="row p-3">
+    <div class="col-8 text-start">
+        <a class="btn btn-outline-success" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+            CATEGORIES
+        </a>
+    
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">CATEGORIES</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+    
+                <ul class="list-group">
+                    {% for item in data["category"] %}  
+                    <li class="list-group-item d-flex justify-content-between align-items-center btn btn-outline-success m-1">
+                        {{ item.name }}
+                        <span class="badge bg-success rounded-pill">14</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+    
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4 text-end">
+        <a href="{{url_for('admin.admin_signin')}}" class="text-decoration-none btn btn-outline-success">
+            Admin
+        </a>
+    </div>
 </div>
 {% endblock %}

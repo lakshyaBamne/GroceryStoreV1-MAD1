@@ -13,15 +13,22 @@ from flaskr.admin import bp
 from flaskr.forms.auth_forms import AdminSigninForm
 from flaskr.models import Admin
 
+from flaskr.utility.Utility import (
+    get_categories
+)
+
 @bp.route('/admin-signin', methods=["GET", "POST"])
 def admin_signin():
     """
         View function to handle all the admin functions
     """
+    data ={}
+    data[f"category"] = get_categories()
+
     form = AdminSigninForm()
     
     if request.method == 'GET':
-        return render_template("admin/admin_signin.html", form=form)
+        return render_template("admin/admin_signin.html", form=form, data=data)
     elif request.method == 'POST':
         if form.validate_on_submit():
             # if user submits the form with all validators, we need to authenticate the user
@@ -35,7 +42,7 @@ def admin_signin():
             if db_data is None:
                 # an admin with the given username does not exist
                 flash(f"A user with the given username DOES NOT EXIST!! Try again.", "ERROR")
-                return render_template("admin/admin_signin.html", form=form)
+                return render_template("admin/admin_signin.html", form=form, data=data)
             else:
                 # an Admin with the given username EXISTS in the database
 
@@ -53,11 +60,11 @@ def admin_signin():
                     print(f"__LOG__ Added a new session (with client side cookies) for Admin : {username}")
                     print(f"__LOG__ [SIGN IN] {username} ")
 
-                    return redirect(url_for('admin.admin', username=username))
+                    return redirect(url_for('admin.admin', username=username, data=data))
                 else:
                     flash(f"INCORRECT PASSWORD!! Try again.", "ERROR")
-                    return redirect(url_for('admin.admin_signin'))
+                    return redirect(url_for('admin.admin_signin', data=data))
                     
         else:
             flash(f'Login Failed!! Try Again.', "ERROR")
-            return redirect(url_for('admin.admin_signin'))
+            return redirect(url_for('admin.admin_signin', data=data))

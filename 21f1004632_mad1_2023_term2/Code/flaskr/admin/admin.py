@@ -21,7 +21,7 @@ from flaskr.forms.admin_data_forms import (
 from flaskr.models import Category
 
 # importing utility functions
-from flaskr.admin.utility.Utility import (
+from flaskr.utility.Utility import (
     get_categories,
     get_products,
     get_locations,
