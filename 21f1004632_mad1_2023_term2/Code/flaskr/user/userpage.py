@@ -6,7 +6,8 @@ from flask import (
 from flaskr.user import bp
 
 from flaskr.utility.User import (
-    get_user_data
+    get_user_data,
+    get_cart_items
 )
 
 from flaskr.utility.Admin import(
@@ -53,9 +54,12 @@ def user_cart(username):
         view to take a user to their cart and show all the items for checkout
         also shows the items which are saved for later which can be moved to the cart later
     """
+    data={}
+    data[f"cart"]=get_cart_items(username)
+
     if 'Username' in session:
         if session['Username'] == username:
-            return render_template('user/usercart.html', username=username)
+            return render_template('user/usercart.html', username=username, data=data)
         else:
             print(f"__LOG__ [POSSIBLE BREACH] someone tried to access account of {username}")
             return "<h1>Nice try hacker!! your tricks not working on this website</h1>"

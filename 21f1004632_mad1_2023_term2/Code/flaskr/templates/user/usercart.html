@@ -36,7 +36,9 @@
 {% block content %}
 
 {# Show all the elements in the cart for the user in the session #}
-
+{% for item in data['cart'] %}
+    {{ item.product_data.name }}
+{% endfor %}
 
 
 {% endblock %}
