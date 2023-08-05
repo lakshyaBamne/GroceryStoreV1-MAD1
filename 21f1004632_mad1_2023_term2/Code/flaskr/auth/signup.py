@@ -13,7 +13,7 @@ from flaskr.extensions import db
 from flaskr.forms.auth_forms import SignupForm
 from flaskr.models import User
 
-from flaskr.utility.Utility import (
+from flaskr.utility.Admin import (
     get_categories
 )
 

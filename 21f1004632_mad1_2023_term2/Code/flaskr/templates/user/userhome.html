@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %} {{username}} {% endblock %}
+
+{% block user_home %}
+<a href="{{ url_for('user.user_page', username=username) }}" class="navbar-brand">
+    <img src="{{ url_for('static', filename='images/Brand-image.svg') }}" height="40" width="40">
+    GroceryStore
+</a>
+{% endblock %}
+
+{# should contain the navigation options on a page on the navigation bar #}
+{% block navbar_options %}
+
+{% endblock %}
+
+{# search bar for the page can be hidden or shown #}
+{% block nav_search %}
+
+{% endblock %}
+
+{% block nav_auth_options %}
+<div class="d-flex align-items-center px-3">
+    <a href="{{ url_for('user.user_cart', username=username) }}" type="button" class="btn btn-outline-success me-3 text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </svg>
+    </a>
+
+    <a href="{{ url_for('auth.signout') }}" type="button" class="btn btn-outline-danger me-3 text-decoration-none">
+        Sign Out
+    </a>
+</div>
+{% endblock %}
+
+{% block content %}
+<section style="background-color: #f4f5f7;">
+    <div class="container p-3">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-12 mb-4 mb-lg-0">
+            <div class="card mb-3" style="border-radius: .5rem;">
+                <div class="row g-0">
+                    <div class="col-md-4 gradient-custom text-center"
+                        style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                        alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                        
+                        {# name and seniority of the user #}
+                        <h5>{{ data["user_data"]["name"] }}</h5>
+                        <p>User</p>
+                        <i class="far fa-edit mb-5"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body p-4">
+                            <h6>Information</h6>
+                            <hr class="mt-0 mb-4">
+                            <div class="row pt-1">
+                                <div class="col-6 mb-3">
+                                <h6>Email</h6>
+                                <p class="text-muted">{{ data["user_data"]["email"] }}</p>
+                                </div>
+                                <div class="col-6 mb-3">
+                                <h6>Phone</h6>
+                                <p class="text-muted">{{ data["user_data"]["contact"] }}</p>
+                                </div>
+                            </div>
+                            <h6>Address</h6>
+                            <hr class="mt-0 mb-4">
+                            <div class="row pt-1">
+                                <div class="col-6 mb-3">
+                                <h6>Default</h6>
+                                <p class="text-muted">enter-default-address-here</p>
+                                </div>
+                            </div>
+                            <div class="row pt-1">
+                                <div class="col-6 mb-3">
+                                <h6>Others</h6>
+                                <p class="text-muted">enter-other-addresses-here</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block footer_admin %}
+
+{% endblock %}
+

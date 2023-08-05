@@ -39,7 +39,21 @@
 
 {# MAIN content for the website #}
 {% block content %}
+<div class="jumbotron m-5 text-center">
+    <h1 class="display-4">Hello, world!</h1>
+    <p class="lead">
+        This is the Home page for Grocery Store
+    </p>
     
+    <hr class="my-4">
+    
+    <p>
+        Login to browse our products
+    </p>
+    <p class="lead">
+        <a class="btn btn-success btn-lg" href="{{ url_for('auth.signin') }}" role="button">Sign In</a>
+    </p>
+</div>
 {% endblock %}
 
 {% block footer_admin %}

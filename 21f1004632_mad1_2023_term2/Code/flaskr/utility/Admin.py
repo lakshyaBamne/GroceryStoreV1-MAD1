@@ -3,8 +3,6 @@
 # where each element of the list will be a dictionary object containing
 # the required attributes for different entities
 
-from flask import jsonify
-
 from flaskr.models import (
     Category,
     Product,
@@ -13,8 +11,10 @@ from flaskr.models import (
     State,
     Country,
     MeasurementUnit,
-    Seller
+    Seller,
 )
+
+from flaskr.extensions import db
 
 def get_categories():
     """
@@ -133,3 +133,5 @@ def get_sellers():
         result.append(result_object)
 
     return result
+
+

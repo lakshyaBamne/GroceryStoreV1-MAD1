@@ -13,7 +13,7 @@ from flaskr.admin import bp
 from flaskr.forms.auth_forms import AdminSigninForm
 from flaskr.models import Admin
 
-from flaskr.utility.Utility import (
+from flaskr.utility.Admin import (
     get_categories
 )
 

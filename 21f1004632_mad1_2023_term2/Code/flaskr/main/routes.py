@@ -7,7 +7,7 @@ from flask import (
 
 from flaskr.main import bp
 
-from flaskr.utility.Utility import (
+from flaskr.utility.Admin import (
     get_categories
 )
 
