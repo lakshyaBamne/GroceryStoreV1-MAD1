@@ -12,6 +12,7 @@ from flaskr.main import bp as app_bp
 from flaskr.auth import bp as auth_bp
 from flaskr.user import bp as user_bp
 from flaskr.admin import bp as admin_bp
+from flaskr.category import bp as category_bp
 
 def create_app():
     # application instance is created inside the Application Factory
@@ -35,5 +36,6 @@ def create_app():
     app.register_blueprint(auth_bp)
     app.register_blueprint(user_bp)
     app.register_blueprint(admin_bp)
+    app.register_blueprint(category_bp)
 
     return app

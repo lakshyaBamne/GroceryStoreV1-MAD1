@@ -51,24 +51,24 @@
     {% for item in data["category"] %}
     <div class="col-3 p-4">
 
-    <a href="#" class="text-decoration-none text-secondary">
-    <div class="card h-100">
-        <img src="https://mdbootstrap.com/img/Photos/Others/images/43.webp" class="card-img-top" alt="Category" />
-        
-        <div class="card-header">
-            <h6>
-                {{ item.name }}
-            </h6>
+    <a href="{{ url_for('category.category_home', id=item.id) }}" class="text-decoration-none text-secondary">
+        <div class="card h-100">
+            <img src="https://mdbootstrap.com/img/Photos/Others/images/43.webp" class="card-img-top" alt="Category" />
+            
+            <div class="card-header">
+                <h6>
+                    {{ item.name }}
+                </h6>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    {{ item.description }}
+                </p>
+            </div>
+            <div class="card-footer text-center">
+                Explore
+            </div>
         </div>
-        <div class="card-body">
-            <p class="card-text">
-                {{ item.description }}
-            </p>
-        </div>
-        <div class="card-footer text-center">
-            Explore
-        </div>
-    </div>
     </a>
 
     </div>
