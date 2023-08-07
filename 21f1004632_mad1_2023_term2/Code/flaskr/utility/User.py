@@ -3,7 +3,8 @@ from flaskr.models import (
     User,
     Cart,
     SaveForLater,
-    Product
+    Product,
+    MeasurementUnit
 )
 
 def get_user_data(username):
@@ -58,7 +59,18 @@ def get_cart_items(username):
 
     return result
     
+def get_product_unit(product_id):
+    """
+        Utility function to get the unit for any product
 
+        ! not working --- FIX
+    """
+    unit_id = Product.query.filter_by(id=product_id).first().unit
+    unit_name = MeasurementUnit.query.filter_by(id=unit_id).first().shorthand
+
+    print(unit_name)
+
+    return unit_name
 
 
 

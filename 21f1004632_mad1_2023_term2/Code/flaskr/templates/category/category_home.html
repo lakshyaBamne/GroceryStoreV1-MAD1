@@ -23,7 +23,6 @@
 </form>
 {% endblock %}
 
-
 {# authentication options like signin, signout, etc #}
 {% block nav_auth_options %}
 <div class="d-flex align-items-center px-3">
@@ -33,24 +32,49 @@
 </div>
 {% endblock %}
 
-
 {# MAIN content for the website #}
 {% block content %}
 <div class="jumbotron m-5 text-center">
-    <h1 class="display-4">Hello, world!</h1>
-    <p class="lead">
-        This is the Category page for category - 
-    </p>
+    <h1 class="display-4">{{ data["category"].name }}</h1>
     
     <hr class="my-4">
     
-    <ul>
-        {% for product in data["products"] %}
-            <li>
-                {{ product.name }}
-            </li>
+    {# product list in the category with the actions #}
+    <div class="row">
+        {% for item in data["products"] %}
+        <div class="col-3 p-3">
+    
+            <div class="card h-100">
+                <img src="{{ url_for('static', filename='images/test.jpg') }}" class="card-img-top" alt="Category" />
+                
+                <div class="card-header">
+                    <h6>
+                        {{ item.name }}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        {{ item.description }}
+                    </p>
+                </div>
+                
+                {# form which takes in the quantity and adds the amount to the cart #}
+                <form class="form input-group text-center" method="post" action="{{ url_for('user.add_to_cart', username=username, product_id=item.id) }}">
+                    <input type="text" name="quantity" class="form-control text-center m-2" placeholder="Quantity">
+                    
+                    <button type="submit" class="text-decoration-none btn btn-outline-success m-2 ">
+                        +
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                        </svg>
+                    </button>
+                </form>
+
+            </div>
+    
+        </div>
         {% endfor %}
-    </ul>
+    </div>
     
 </div>
 {% endblock %}

@@ -35,10 +35,44 @@
 
 {% block content %}
 
-{# Show all the elements in the cart for the user in the session #}
-{% for item in data['cart'] %}
-    {{ item.product_data.name }}
-{% endfor %}
+<div class="jumbotron m-5 text-center">
+    <h1 class="display-4">Cart - {{ username }}</h1>
+    
+    <hr class="my-4">
+    
+    {# product list in the category with the actions #}
+    <div class="row">
+        {% for item in data["cart"] %}
+        <div class="col-3 p-3">
+    
+            <div class="card h-100">
+                <img src="{{ url_for('static', filename='images/test.jpg') }}" class="card-img-top" alt="Category" />
+                
+                <div class="card-header">
+                    <h6>
+                        {{ item["product_data"].name }}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        Quantity - {{ item.quantity }}
+                    </p>
+                </div>
+                <div class="text-center">
+                    <a href="{{ url_for('user.remove_from_cart', username=username, product_id=item.product_id) }}" class="text-decoration-none btn btn-outline-danger m-2">
+                        -
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+    
+        </div>
+        {% endfor %}
+    </div>
+    
+</div>
 
 
 {% endblock %}

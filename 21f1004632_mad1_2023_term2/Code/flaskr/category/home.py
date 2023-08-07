@@ -27,9 +27,12 @@ def category_home(id):
 
     # first we need to collect the data to be passed to a category page
     # we need all the product information for the given product
-    all_products = Product.query.filter_by(category=id).all()
+    all_products = Product.query.filter_by(category=id).order_by(Product.expiration_date).all()
+
+    category = Category.query.filter_by(id=id).first()
 
     data[f"products"] = all_products
+    data[f"category"] = category
 
     if 'Username' in session:
         return render_template("category/category_home.html", username=session['Username'],data=data)
