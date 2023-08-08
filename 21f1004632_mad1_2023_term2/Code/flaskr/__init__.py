@@ -29,8 +29,6 @@ def create_app():
     with app.app_context():
         db.create_all()
 
-    migrate.init_app(app, db, render_as_batch=True)
-
     # Blueprint registrations
     app.register_blueprint(app_bp)
     app.register_blueprint(auth_bp)
