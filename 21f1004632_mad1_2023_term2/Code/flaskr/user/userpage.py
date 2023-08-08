@@ -7,7 +7,8 @@ from flaskr.user import bp
 
 from flaskr.utility.User import (
     get_user_data,
-    get_cart_items
+    get_cart_items,
+    get_total_amount
 )
 
 from flaskr.utility.Admin import(
@@ -56,6 +57,7 @@ def user_cart(username):
     """
     data={}
     data[f"cart"]=get_cart_items(username)
+    data[f"payable"] = get_total_amount(username)
 
     if 'Username' in session:
         if session['Username'] == username:

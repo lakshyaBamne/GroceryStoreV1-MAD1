@@ -47,6 +47,43 @@
 {% endblock %}
 
 {% block content %}
+
+{# flashing SUCCESS messages #}
+{% with messages = get_flashed_messages(category_filter=["SUCCESS"]) %}
+    {% if messages %}
+        <div class="alert alert-success alert-dismissible fade show text-center m-1" role="alert">
+            {% for message in messages %}
+                <p>{{ message }}</br></p>
+            {% endfor %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endif %}
+{% endwith %}
+
+{# flashing WARNING messages #}
+{% with messages = get_flashed_messages(category_filter=["WARNING"]) %}
+    {% if messages %}
+        <div class="alert alert-warning alert-dismissible fade show text-center m-1" role="alert">
+            {% for message in messages %}
+                <p>{{ message }}</br></p>
+            {% endfor %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endif %}
+{% endwith %}
+
+{# flashing ERROR messages #}
+{% with messages = get_flashed_messages(category_filter=["ERROR"]) %}
+    {% if messages %}
+        <div class="alert alert-danger alert-dismissible fade show text-center m-1" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endif %}
+{% endwith %}
+
 <div class="row">
     {% for item in data["category"] %}
     <div class="col-3 p-4">

@@ -2,10 +2,11 @@
 from flaskr.models import (
     User,
     Cart,
-    SaveForLater,
     Product,
     MeasurementUnit
 )
+
+from flaskr.extensions import db
 
 def get_user_data(username):
     """
@@ -23,6 +24,15 @@ def get_user_data(username):
     result["joined"] = user.date_joined
 
     return result
+
+def get_product_unit(product_id):
+    """
+        Utility function to get the unit for any product
+    """
+    unit_id = Product.query.filter_by(id=product_id).first().unit
+    unit_name = MeasurementUnit.query.filter_by(id=unit_id).first().shorthand
+
+    return unit_name
 
 def get_cart_items(username):
     """
@@ -52,6 +62,7 @@ def get_cart_items(username):
         result_object = {
             "product_id" : all_items[i].product,
             "quantity" : all_items[i].quantity,
+            "unit" : get_product_unit(all_items[i].product),
             "product_data" : product_data
         }
 
@@ -59,19 +70,36 @@ def get_cart_items(username):
 
     return result
     
-def get_product_unit(product_id):
+def get_total_amount(username):
     """
-        Utility function to get the unit for any product
-
-        ! not working --- FIX
+        Function to get the total money user has to pay for cart items
     """
-    unit_id = Product.query.filter_by(id=product_id).first().unit
-    unit_name = MeasurementUnit.query.filter_by(id=unit_id).first().shorthand
 
-    print(unit_name)
+    # first get the cart items for the user
+    cart_items = get_cart_items(username)
 
-    return unit_name
+    cost=0
 
+    for item in cart_items:
+        cost += int(item["product_data"]["price"]) * int(item["quantity"])
+
+    print(cost)
+
+    return cost
+
+def clear_cart(username):
+    """
+        Function to clear the cart of any user after purchase is complete
+    """
+
+    cart_items = Cart.query.filter_by(username=username).all()
+
+    for item in cart_items:
+        db.session.delete(item)
+
+    db.session.commit()
+
+    print(f"__LOG__ Cleared the cart for {username}")
 
 
 

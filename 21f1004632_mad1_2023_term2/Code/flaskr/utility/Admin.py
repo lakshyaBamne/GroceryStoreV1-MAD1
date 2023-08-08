@@ -49,11 +49,13 @@ def get_products():
         prod_id = all_products[i].id
         prod_name = all_products[i].name
         prod_desc = all_products[i].description
+        prod_price = all_products[i].price_per_quantity
 
         result_object = {
             "id" : prod_id,
             "name" : prod_name,
-            "description" : prod_desc
+            "description" : prod_desc,
+            "price" : prod_price
         }
 
         result.append(result_object)

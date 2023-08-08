@@ -5,7 +5,8 @@ from flask import (
     session,
     flash,
     url_for,
-    redirect
+    redirect,
+    render_template
 )
 
 from flaskr.user import bp
@@ -17,6 +18,8 @@ from flaskr.models import (
     Cart,
     SaveForLater
 )
+
+from flaskr.utility.User import clear_cart
 
 # cart_object=Cart(username="lakshyaBamne", product=1)
 @bp.route("/user/add_to_cart/<username>/<int:product_id>", methods=["POST"])
@@ -60,3 +63,22 @@ def remove_from_cart(username, product_id):
 
     return redirect(url_for("user.user_cart", username=username))
 
+
+@bp.route("/user/checkout/<username>", methods=["GET"])
+def checkout(username):
+    """
+        Proceed to check out
+    """
+    if 'Username' in session:
+        # proceed to check out page after removing items from the cart
+        clear_cart(username)
+
+        flash(f"__LOG__ Successfull checkout for {username}", "SUCCESS")
+        print(f"__LOG__ Successfull checkout for {username}", "SUCCESS")
+
+        return render_template("user/checkout.html"), {"Refresh" : f"2, url={url_for('user.user_page', username=username)}"}
+
+        # return redirect(url_for('user.user_page', username=username))
+    else:
+        print(f"__LOG__ [POSSIBLE BREACH] someone tried to access account of {username}")
+        return "<h1>Nice try hacker!! your tricks not working on this website</h1>"
